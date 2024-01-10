@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2"
 
 import NavBar from "../components/NavBar";
 
@@ -33,12 +34,13 @@ const CrudPostPage = () => {
                     }),
                 }
             )
+
             setPostContent(prevPostContent => [
                 ...prevPostContent,
                 {
                     "userId": userId,
                     "title": title,
-                    "body": body,   
+                    "body": body,
                 }
             ]);
 
@@ -52,44 +54,70 @@ const CrudPostPage = () => {
     }
 
     return (
-        <div className="container">
+        <Container className="container">
             <NavBar />
-            <img src={logo} className="logo" alt="CRUD Post App logo" style={{width: "100px", height: "100px", paddingBottom: "1px"}} />
-            <h1 style={{marginTop: "1px"}}>CRUD Post App</h1>
-            <label>User Id</label>
-            <input type="text" name="userId" id="userId" title="userId" defaultValue={userId} disabled={true} onChange={(e) => setUserId(e.target.value)} />
-            <br />
-            <label>Title</label>
-            <input type="text" name="title" id="title" title="title" defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
-            <br />
-            <label>Content</label>
-            <textarea rows="4" cols="50" name="body" id="body" title="body" defaultValue={body} onChange={(e) => setBody(e.target.value)} />
-            <br />
-            <button onClick={() => handleSubmit()}>Submit</button>
-            <hr />
-            {
-                postContent === null
-                ? ""
-                :
-                postContent.map((content, idx) => {
-                    return(
-                        <Card key={idx} sx={{ maxWidth: 400 }}>
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div" style={{marginBottom: "1px"}}>
-                                {content.title}
-                            </Typography>
-                            <Typography gutterBottom variant="h6" component="div" style={{fontSize: "14px", marginBottom: "15px"}}>
-                                By User ID {content.userId}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" style={{textAlign: "left"}}>
-                                {content.body}
-                            </Typography>
-                            </CardContent>
-                        </Card>
-                    )
-                })
-            }
-        </div>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <img src={logo} className="logo" alt="CRUD Post App logo" style={{ width: "100px", height: "100px", paddingBottom: "1px" }} />
+                </Grid>
+                <Grid item xs={12}>
+                    <h1 style={{ marginTop: "1px" }}>CRUD Post App</h1>
+                </Grid>
+                <Grid item xs={12}>
+                    <label>User Id</label>
+                </Grid>
+                <Grid item xs={12} style={{ marginTop: "1px" }}>
+                    <input
+                        type="text"
+                        name="userId"
+                        id="userId"
+                        title="userId"
+                        defaultValue={userId}
+                        disabled={true}
+                        onChange={(e) => setUserId(e.target.value)}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <label>Title</label>
+                </Grid>
+                <Grid item xs={12}>
+                    <input type="text" name="title" id="title" title="title" defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
+                </Grid>
+                <Grid item xs={12}>
+                    <label>Content</label>
+                </Grid>
+                <Grid item xs={12}>
+                    <textarea rows="4" cols="50" name="body" id="body" title="body" defaultValue={body} onChange={(e) => setBody(e.target.value)} />
+                </Grid>
+                <Grid item xs={12}>
+                    <button onClick={() => handleSubmit()}>Submit</button>
+                </Grid>
+                {
+                    postContent === null
+                        ? ""
+                        :
+                        postContent.map((content, idx) => {
+                            return (
+                                <Grid item sx={12} sm={6} md={4} key={idx}>
+                                    <Card>
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="div" style={{ marginBottom: "1px" }}>
+                                                {content.title}
+                                            </Typography>
+                                            <Typography gutterBottom variant="h6" component="div" style={{ fontSize: "14px", marginBottom: "15px" }}>
+                                                By User ID {content.userId}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary" style={{ textAlign: "left" }}>
+                                                {content.body}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            )
+                        })
+                }
+            </Grid>
+        </Container>
     )
 }
 
