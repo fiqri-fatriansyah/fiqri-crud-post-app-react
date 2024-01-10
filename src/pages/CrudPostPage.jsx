@@ -4,6 +4,8 @@ import { Card, CardContent, Typography } from "@mui/material";
 
 import NavBar from "../components/NavBar";
 
+import logo from "../assets/crud-post-icon.png";
+
 const CrudPostPage = () => {
     const [userId, setUserId] = useState("23");
     const [title, setTitle] = useState("How do we find our KENergy?");
@@ -52,7 +54,8 @@ const CrudPostPage = () => {
     return (
         <div className="container">
             <NavBar />
-            <h1>CRUD Post App</h1>
+            <img src={logo} className="logo" alt="CRUD Post App logo" style={{width: "100px", height: "100px", paddingBottom: "1px"}} />
+            <h1 style={{marginTop: "1px"}}>CRUD Post App</h1>
             <label>User Id</label>
             <input type="text" name="userId" id="userId" title="userId" defaultValue={userId} disabled={true} onChange={(e) => setUserId(e.target.value)} />
             <br />

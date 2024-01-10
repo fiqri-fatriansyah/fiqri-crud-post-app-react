@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Box, Container } from "@mui/material";
+
 import NavBar from "../components/NavBar";
 
+import "./LoginPage.css"
 import logo from "../assets/crud-post-icon.png";
 
 const LoginPage = () => {
@@ -31,18 +34,20 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="container">
-            <NavBar />
-            <img src={logo} className="logo" alt="CRUD Post App logo" style={{width: "100px", height: "100px", paddingBottom: "1px"}} />
-            <h1 style={{marginTop: "1px"}}>Login</h1>
-            <label>Username</label>
-            <input type="text" name="username" id="username" title="username" defaultValue={username}  onChange={(e) => setUsername(e.target.value)} />
-            <br />
-            <label>Email</label>
-            <input type="text" name="email" id="email" title="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
-            <br />
-            <button onClick={() => handleSubmit()} style={{marginTop: "20px"}}>Login</button>
-        </div>
+        <Container className="container">
+            <Box>
+                <NavBar />
+                <img src={logo} className="logo" alt="CRUD Post App logo" style={{width: "100px", height: "100px", paddingBottom: "1px"}} />
+                <h1 style={{marginTop: "1px"}}>Login</h1>
+                <label>Username</label>
+                <input type="text" name="username" id="username" title="username" defaultValue={username}  onChange={(e) => setUsername(e.target.value)} />
+                <br />
+                <label>Email</label>
+                <input type="text" name="email" id="email" title="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
+                <br />
+                <button onClick={() => handleSubmit()} style={{marginTop: "20px"}}>Login</button>
+            </Box>
+        </Container>
     );
 }
 
